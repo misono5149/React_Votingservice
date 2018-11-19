@@ -63,7 +63,7 @@ class Register extends Component{
           .then(json => console.log(json))
           .catch(err => alert(err))
           .then()//이메일을 보내야 할거 같음 여기다가 미구현
-          .alert("해당 이메일 주소로 확인 메일을 보냈습니다. 링크를 클릭해주세요")
+         // .alert("해당 이메일 주소로 확인 메일을 보냈습니다. 링크를 클릭해주세요")
       )
    
     }

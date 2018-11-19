@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
-
-class votingList extends Component{
+import './votingList.css'
+class VotingList extends Component{
     constructor(props){
         super(props);
         this.state = {}; // there is no state
     }
 
     handleHistory = (id) => {
-        let url = '/voting/' + id
+        let url = '/voter/elections/:' + {id} + '/candidates'
         this.props.history.push(url)
     }
 
@@ -29,7 +29,7 @@ class votingList extends Component{
          } else if (hh === 12) {
             h = 12;
             ampm = 'PM';
-         } else if (hh == 0) {
+         } else if (hh === 0) {
             h = 12;
          }
          
@@ -44,17 +44,17 @@ class votingList extends Component{
            let color = ""
            let status = ""
    
-           if(row.state == 1) {
+           if(row.state === 1) {
               color = "negative"
               status = "투표전"
-           } else if(row.state == 3) {
+           } else if(row.state === 3) {
               color = "warning"
               status = "투표완료"
            } else {
               status = "투표중"
            }
            return (
-                 <tr className={color} key={index} onClick={() => this.handleHistory(row.id)}>
+                 <tr className={color} key={index} onClick={() => this.handleHistory(row.election_id)}>
                        <td>
                           {status}
                        </td>
@@ -78,11 +78,13 @@ class votingList extends Component{
         return (
             <div className = 'voting_list'>
                 <div className = 'title m-b-50'>
-                    선거목록
+                <div className = 'ui horizontal divider'></div>
+                    <h1 className = 'ui centered header'>선거 목록</h1>
                 </div>
+                <div className = 'ui horizontal divider'></div>
                 <div className = 'ui grid centered'>
                     <div className = 'fourteen wide computer column'>
-                        <table className = 'ui celled table selectable'>
+                        <table className = 'ui celled table selectable' id = 'thistable'>
                             <thead>
                                 <tr>
                                     <th>
@@ -131,4 +133,4 @@ class votingList extends Component{
         )
     }
 }
-export default withRouter(votingList);
+export default withRouter(VotingList);

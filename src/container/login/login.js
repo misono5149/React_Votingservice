@@ -8,7 +8,8 @@ class Login extends Component{
         super(props);
         this.state = {
             id : '',
-            pw : ''
+            pw : '',
+            is_auth : props.is_auth
         }
         /* 입력 state관리  */
         this.changeID = this.changeID.bind(this)
@@ -22,6 +23,10 @@ class Login extends Component{
     _getUserAuth = async () => {await this.clickLogin}
     
     clickLogin = e => { //클릭시
+        if(this.state.id === '' || this.state.pw === ''){
+            alert('id나 pw를 입력해주세요')
+        }
+        else{
         e.preventDefault();
         const user = {
             id : this.state.id,
@@ -38,6 +43,7 @@ class Login extends Component{
             .catch(err => alert(err))
            
         )
+            }
     }   
     
     render(){
@@ -45,6 +51,7 @@ class Login extends Component{
         <div className = 'signin_div'>
             <div className = 'ui middle aligned centered grid container'>
                 <div className = 'four wide computer column'>
+                <h1 className = 'ui centered header'>로그인</h1>
                     <form className = 'ui form'>
                         <div className = 'field'>
                             <label>아이디</label>
@@ -54,7 +61,7 @@ class Login extends Component{
                             <label>비밀번호</label>
                             <input type = 'password' placeholder = 'input user password' onChange = {this.changePW}/>
                         </div>
-                        <button type = 'submit' class = 'ui button' role = 'submit' onClick = {this.clickLogin}>로그인</button>
+                        <button type = 'submit' className = 'ui button' role = 'submit' onClick = {this.clickLogin}>로그인</button>
                         <Link to = '/sign-up' className = 'ui button'>회원가입</Link>
                     </form>
                 </div>
