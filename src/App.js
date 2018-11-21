@@ -6,14 +6,15 @@ import Voting from './container/voting/voting.js';
 import MainNav from './component/mainNav.js'
 import Login from './container/login/login.js'
 import Register from './container/register/register.js'
-import AboutVote from './container/aboutVote/aboutVote.js'
+import PopupCandidate from './component/popupCandidate';
+import DescriptVote from './component/descriptVote';
 
 const Main = () => (
   <Switch>
     <Route exact path = '/voter/elections' component = {Voting}></Route>
     <Route exact path = '/login' component = {Login}></Route>
     <Route exact path = '/sign-up' component = {Register}></Route>
-    <Route exact path = '/voter/elections/:election_id/candidates' component = {AboutVote}></Route>
+    <Route exact path = '/voter/elections/:id/candidates' component = {DescriptVote}></Route>
   </Switch>
 )
 class App extends Component {

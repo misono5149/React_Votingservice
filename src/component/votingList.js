@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 import './votingList.css'
+import '../lib/time.js'
+import '../App.css';
+import { ConvertTimestamp } from '../lib/time.js';
 class VotingList extends Component{
     constructor(props){
         super(props);
@@ -8,36 +11,12 @@ class VotingList extends Component{
     }
 
     handleHistory = (id) => {
-        let url = '/voter/elections/:' + {id} + '/candidates'
-        this.props.history.push(url)
+        let url = '/voter/elections/:' + id + '/candidates'
+        this.props.history.push({
+            pathname: url,
+            state : this.props.list[id-1]
+          })
     }
-
-    convertTimestamp = (timestamp) => {
-        var d = new Date(timestamp * 1000),   // Convert the passed timestamp to milliseconds
-            yyyy = d.getFullYear(),
-            mm = ('0' + (d.getMonth() + 1)).slice(-2),   // Months are zero based. Add leading 0.
-            dd = ('0' + d.getDate()).slice(-2),         // Add leading 0.
-            hh = d.getHours(),
-            h = hh,
-            min = ('0' + d.getMinutes()).slice(-2),      // Add leading 0.
-            ampm = 'AM',
-            time;
-               
-         if (hh > 12) {
-            h = hh - 12;
-            ampm = 'PM';
-         } else if (hh === 12) {
-            h = 12;
-            ampm = 'PM';
-         } else if (hh === 0) {
-            h = 12;
-         }
-         
-         // ie: 2013-02-18, 8:35 AM   
-         time = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' + min + ' ' + ampm;
-            
-         return time;
-      }
    
      renderTableRow = () => {
         return this.props.list.map((row, index) => {
@@ -54,7 +33,7 @@ class VotingList extends Component{
               status = "투표중"
            }
            return (
-                 <tr className={color} key={index} onClick={() => this.handleHistory(row.election_id)}>
+                 <tr className={color} key={index} onClick={() => this.handleHistory(row.id)}>
                        <td>
                           {status}
                        </td>
@@ -65,10 +44,10 @@ class VotingList extends Component{
                           {row.text}
                        </td>
                        <td>
-                          {this.convertTimestamp(row.start_time)}
+                          {ConvertTimestamp(row.start_time)}
                        </td>
                        <td>
-                          {this.convertTimestamp(row.end_time)}
+                          {ConvertTimestamp(row.end_time)}
                        </td>
                  </tr>
               )

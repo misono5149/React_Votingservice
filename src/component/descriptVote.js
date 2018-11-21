@@ -1,48 +1,21 @@
 import React, { Component } from 'react';
-import {withRouter} from 'react-router-dom'
-import PopupCandidate from './popupCandidate.js'
-import {Route, Link} from 'react-router-dom';
+import {ConvertTimestamp} from '../lib/time.js'
+import CandidateList from '../container/candidatelist/candidatelist.js'
+
 class DescriptVote extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            showPopup : false
-        }; // there is no state
-        this.renderPopup = this.renderPopup.bind(this);
-    }
-      
-    renderPopup = (id) => {
-        console.log("click popup")
-        return(
-            <Link to = {{
-                pathname : "/voter/candidates/:candidate_id",
-                state : {showPopup : !this.state.showPopup}}}>{id}</Link>
-        )
-    }
-     rendertableVote = () => {
-        return this.props.list.map((row, index) => {
-           return (
-                 <tr className="candidate-table" key={index} onClick={() => this.renderPopup(row.id)}>
-                       <td>
-                            {row.election_id}
-                       </td>
-                       <td>
-                            {row.thumb_nail}
-                       </td>
-                       <td>
-                            {row.name}
-                       </td>
-                 </tr>
-              )
-        })
-     }
+        this.state = {}; // there is no state
+    } 
+    
     render(){
+        console.log(this.props.location.state.id);
         return (
             <div className = 'about-voting'>
                 <div className = 'title text-left m-b-50'>
-                    선거이름
+                    {this.props.location.state.title}
                 </div>
-                <div className = 'ui divider'></div>
+                <div className = 'ui divider'/>
                 <div className = 'ui internally grid'>
                     <div className = 'row'>
                         <div className = 'four wide column'>
@@ -53,13 +26,13 @@ class DescriptVote extends Component{
                                 선거 기간 
                             </div>
                             <div className = 'm-t-20 m-b-20'>
-                                기간 따오기
+                                {ConvertTimestamp(this.props.location.state.start_time)} ~ {ConvertTimestamp(this.props.location.state.end_time)}
                             </div>
                             <div className = 'voting-content'>
                                 선거 내용
                             </div>
                             <div className = 'm-t-20 m-b-20'>
-                                내용 따오기
+                                {this.props.location.state.content}
                             </div>
                         </div>
                     </div>
@@ -73,10 +46,10 @@ class DescriptVote extends Component{
                                     <thead>
                                         <tr>
                                             <th>
-                                                후보자 번호
+                                                후보자 사진
                                             </th>
                                             <th>
-                                                후보자 사진
+                                                후보자 번호
                                             </th>
                                             <th>
                                                 후보자 이름
@@ -84,7 +57,7 @@ class DescriptVote extends Component{
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {this.rendertableVote()}
+                                        <CandidateList candidate = {this.props.location.state.id}/>
                                     </tbody>
                                 </table>
                             </div>
@@ -95,4 +68,4 @@ class DescriptVote extends Component{
         )
     }
 }
-export default withRouter(DescriptVote);
+export default DescriptVote;
