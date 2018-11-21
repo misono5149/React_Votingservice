@@ -1,0 +1,26 @@
+.title {
+    font-size : 25px;
+    font-weight:bold;
+  }
+  .text-left {
+    text-align : left !important;
+  }
+  .m-b-50 {
+    margin-bottom: 50px;
+  }
+.about-voting{
+    margin-left: 175px;
+    margin-top : 50px;
+}
+.m-t-50{
+    margin-top : 50px;
+}
+.m-t-20{
+    margin-top : 20px;
+}
+.m-b-20{
+    margin-bottom: 20px;
+}
+.m-l-20{
+    margin-left: 20px;
+}

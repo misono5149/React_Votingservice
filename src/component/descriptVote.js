@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {ConvertTimestamp} from '../lib/time.js'
 import CandidateList from '../container/candidatelist/candidatelist.js'
-
+import './descriptVote.css';
 class DescriptVote extends Component{
     constructor(props){
         super(props);
@@ -16,13 +16,13 @@ class DescriptVote extends Component{
                     {this.props.location.state.title}
                 </div>
                 <div className = 'ui divider'/>
-                <div className = 'ui internally grid'>
-                    <div className = 'row'>
-                        <div className = 'four wide column'>
-                            사진
-                        </div>
-                        <div className = 'twelve wide column text-left'>
-                            <div className = 'voting-title'>
+                    <div className = 'ui internally grid'>
+                        <div className = 'row'>
+                            <div className = 'four wide column m-t-50'>
+                                사진
+                            </div>
+                            <div className = 'twelve wide column text-left'>
+                            <div className = 'voting-title m-b-50'>
                                 선거 기간 
                             </div>
                             <div className = 'm-t-20 m-b-20'>
@@ -32,38 +32,19 @@ class DescriptVote extends Component{
                                 선거 내용
                             </div>
                             <div className = 'm-t-20 m-b-20'>
-                                {this.props.location.state.content}
+                                {this.props.location.state.text}
                             </div>
                         </div>
-                    </div>
-                    <div className = 'row m-t-50'>
-                        <div className = 'title text-left m-b-50'>
-                            선거에 등록 된 후보자 목록
                         </div>
-                        <div className = 'ui grid centered'>
-                            <div className = 'fourteen wide computer column'>
-                                <table className = 'ui celled table selectable'>
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                후보자 사진
-                                            </th>
-                                            <th>
-                                                후보자 번호
-                                            </th>
-                                            <th>
-                                                후보자 이름
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <CandidateList candidate = {this.props.location.state.id}/>
-                                    </tbody>
-                                </table>
+                        <div className = 'row ui grid'>
+                            <div className = 'row title m-l-20 m-b-50'>
+                                선거에 등록 된 후보자 목록
                             </div>
+                        <div className = 'row'>
+                            <CandidateList candidate = {this.props.location.state.id}/>
+                        </div>
                         </div>
                     </div>
-                </div>
             </div>
         )
     }
