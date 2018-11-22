@@ -9,7 +9,6 @@ class DescriptVote extends Component{
     } 
     
     render(){
-        console.log(this.props.location.state.id);
         return (
             <div className = 'about-voting'>
                 <div className = 'title text-left m-b-50'>
