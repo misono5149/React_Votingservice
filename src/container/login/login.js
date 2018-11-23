@@ -40,6 +40,7 @@ class Login extends Component{
                 {this.setState({id : res.data.id, pw : res.data.pw})}
                 )
             .then(json => console.log(json))
+            .then(this.setState.is_auth = true)
             .catch(err => alert(err))
            
         )

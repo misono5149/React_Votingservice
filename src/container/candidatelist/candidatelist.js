@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
-import PopupCandidate from '../../component/Candidate';
 import img from '../../assets/img/matthew.png'
-import { Segment } from 'semantic-ui-react';
+
 class CandidateList extends Component {
     constructor(props){
         super(props);

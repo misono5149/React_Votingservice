@@ -6,7 +6,8 @@ class Popup extends Component {
         this.voting = this.voting.bind(this);
     }
 
-    voting = (electionid) => {
+    voting = (candidateid, electionid) => {
+        console.log(candidateid);
         console.log(electionid);
     }
     render(){
@@ -14,7 +15,7 @@ class Popup extends Component {
             <div className = 'popup'>
                 <div className = 'popup_inner'>
                     <h1>{this.props.text}</h1>
-                    <button onClick = {this.voting(this.props.id)} >투표하기</button>
+                    <button onClick = {this.voting(this.props.candidate_id, this.props.election_id)} >투표하기</button>
                     <button onClick = {this.props.closePopup}>다시 한번 생각해보기</button>
                 </div>
             </div>
