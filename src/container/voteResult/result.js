@@ -48,8 +48,30 @@ class VotingResult extends Component {
 	  			poll:50
 	  		}]
 
-            }]
-        }
+            },
+			
+			{
+			title: "1대 회장선거",
+			text:"회장선거",
+			start_time:1541989543,
+			end_time:1542680743,
+			state:3,
+			id:3,
+			all_vote:1567,
+			candidate:[{
+				name:"김지말",
+				poll:684
+			},{
+				name: "최건호",
+				poll:321
+			},{
+				name: "박기범",
+				poll:865
+			}]
+
+		  }]
+		
+	  }
         this.state = {};
     }
 

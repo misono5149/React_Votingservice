@@ -25,14 +25,32 @@ class VotingResultContent extends Component {
 
 	renderPieChart(){
 		let list = Sortnum(this.props.data.candidate);
+		let nametemp = [] //array type
+		let polltemp = []
+		for(let i =0; i< list.length; i++){
+			nametemp.push(String(list[i].name));
+			polltemp.push(list[i].poll);
+		}
 		const aboutvote = {
 			charData :{
-				labels : [list[0].name, list[1].name, list[2].name],
+				labels : nametemp,
 				datasets : [
 					{
 						label : '투표수',
-						data : [list[0].poll, list[1].poll, list[2].poll],
+						data : polltemp,
 						backgroundColor : [
+							"#FF6384",
+							"#36A2EB",
+							"#FFCE56",
+							"#FF6384",
+							"#36A2EB",
+							"#FFCE56",
+							"#FF6384",
+							"#36A2EB",
+							"#FFCE56",
+							"#FF6384",
+							"#36A2EB",
+							"#FFCE56",
 							"#FF6384",
 							"#36A2EB",
 							"#FFCE56"
@@ -41,6 +59,7 @@ class VotingResultContent extends Component {
 				]
 			}
 		}
+	
 		return (
 			
 			<div>
