@@ -47,7 +47,7 @@ class Candidate extends Component{
                     </button>
                     {this.state.showPopup ?
                     <Popup election_id = {this.props.location.state.election_id}
-                           candidate_id = {this.props.location.state.id} 
+                           candidate_id = {this.props.location.state.candidate_id} 
                            text = '진짜로 투표를 하실 껍니까??' 
                            closePopup = {this.togglePopup.bind(this)}/> : null}
                 </div>

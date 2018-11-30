@@ -11,6 +11,7 @@ class Popup extends Component {
         console.log(electionid);
     }
     render(){
+        console.log(this.props)
         return(
             <div className = 'popup'>
                 <div className = 'popup_inner'>

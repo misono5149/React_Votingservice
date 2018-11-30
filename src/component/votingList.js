@@ -10,16 +10,16 @@ class VotingList extends Component{
         this.state = {}; // there is no state
     }
 
-    handleHistory = (id) => {
-        let url = '/voter/elections/:' + id + '/candidates'
+    handleHistory = (item) => {
+        let url = '/voter/elections/:' + item.election_id + '/candidates'
         this.props.history.push({
             pathname: url,
-            state : this.props.list[id-1]
+            state : item
           })
     }
    
      renderTableRow = () => {
-        return this.props.list.map((row, index) => {
+        return this.props.vote.map((row, index) => {
            let color = ""
            let status = ""
    
@@ -33,7 +33,7 @@ class VotingList extends Component{
               status = "투표중"
            }
            return (
-                 <tr className={color} key={index} onClick={() => this.handleHistory(row.id)}>
+                 <tr className={color} key={index} onClick={() => this.handleHistory(row)}>
                        <td>
                           {status}
                        </td>
@@ -41,7 +41,7 @@ class VotingList extends Component{
                           {row.title}
                        </td>
                        <td className="voting-text">
-                          {row.text}
+                          {row.content}
                        </td>
                        <td>
                           {ConvertTimestamp(row.start_time)}
@@ -84,7 +84,7 @@ class VotingList extends Component{
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.renderTableRow()}
+                           {this.renderTableRow()}
                             </tbody>
                             <tfoot className = ''>
                                 <tr className = ''>

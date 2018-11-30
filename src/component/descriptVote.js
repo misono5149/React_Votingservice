@@ -31,7 +31,7 @@ class DescriptVote extends Component{
                                 선거 내용
                             </div>
                             <div className = 'm-t-20 m-b-20'>
-                                {this.props.location.state.text}
+                                {this.props.location.state.content}
                             </div>
                         </div>
                         </div>
@@ -40,7 +40,7 @@ class DescriptVote extends Component{
                                 선거에 등록 된 후보자 목록
                             </div>
                         <div className = 'row'>
-                            <CandidateList candidate = {this.props.location.state.id}/>
+                            <CandidateList candidate = {this.props.location.state}/>
                         </div>
                         </div>
                     </div>

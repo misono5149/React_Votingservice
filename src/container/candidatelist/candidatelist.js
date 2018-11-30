@@ -1,73 +1,69 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import img from '../../assets/img/matthew.png'
-
+import axios from 'axios'
 class CandidateList extends Component {
     constructor(props){
         super(props);
 
-        this.people  = [
-            {
-                name:'김진수',
-                thumb_nail : '',
-                resume : 'asdfasdfewr',
-                party : '1',
-                election_id : 1,
-                id : 1
-            },
-            {
-                name:'김진아',
-                thumb_nail : '',
-                resume : 'asdfasd1234324',
-                party : '1',
-                election_id : 1,
-                id : 2
-            },
-            {
-                name:'김진옹',
-                thumb_nail : '',
-                resume : 'asdf1밍ㄴ234324',
-                party : '1',
-                election_id : 1,
-                id : 3
-            }
-
-        ]
+       this.state = {
+           list : [],
+           status :''
+       }
     }
-
-    handleHistory = (person, candidate_id) => {
-        let url = '/voter/candidates/:' + candidate_id
+    componentDidMount(){
+        this.candidateInfo();
+    }
+    candidateInfo = () => { 
+         axios.get('http://52.79.177.231:8080/voter/elecitons/'+this.props.candidate.election_id+'/candidates') //get 형식
+        .then((data) => {
+            this.setState({
+                list : data.data.list,
+                status : data.status
+            });
+        })
+        .catch((err) => {console.log(err)})
+    }
+    handleHistory = (person) => {
+        console.log(person.election_id)
+        let url = '/voter/candidates/:' + person.candidate_id
         this.props.history.push({
             pathname : url,
             state : person
         })
-        console.log(person)
     }
     renderCandidateListTable = () => {
         //후보자 번호, 후보자 사진, 후보자 이름 순
         //candidate로 받은 것을 매핑해서 뿌려줌
         //table크기 수정 필요
-        let data = this.props.location.state
-           return this.people.map((people, index) => {
-                if(data.id === people.election_id){
+        let data = this.props.candidate;
+        if(this.state.list){
+            return this.state.list.map((people, index) => {
+                if(data.election_id === people.election_id){
                     return(
-                        <tr className='' key = {index} onClick={() => this.handleHistory(people, people.id)}>
+                        <tr className='' key = {index} onClick={() => this.handleHistory(people)}>
                             <td>
                                 <img src = {img} className = 'ui image'/>                                
                             </td>
                             <td>
-                                {people.id}
+                                {people.candidate_id}
                             </td>
                             <td>
                                 {people.name}
                             </td>
                         </tr>
                     )}
-                   }
-        
-        )
-   // }
-}
+                   })
+        }
+        else{
+            return(
+                    <tr className='ui table stretched centered'>
+                        <td>
+                            아직 후보자가 없네요                            
+                        </td>
+                    </tr>
+                )}
+               }
     render(){
         return(
             <div className = 'candidateList'>
