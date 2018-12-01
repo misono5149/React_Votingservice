@@ -4,10 +4,15 @@ import './votingList.css'
 import '../lib/time.js'
 import '../App.css';
 import { ConvertTimestamp } from '../lib/time.js';
+import axios from 'axios'
 class VotingList extends Component{
     constructor(props){
         super(props);
-        this.state = {}; // there is no state
+        this.state = {
+            'current_page':'',
+            'list':[],
+            'status':''
+        }; // there is no state
     }
 
     handleHistory = (item) => {
@@ -17,41 +22,97 @@ class VotingList extends Component{
             state : item
           })
     }
+    pagiNation = (pagenum) => { 
+        const tempPage = pagenum;
+        console.log(tempPage)
+        axios.get('http://52.79.177.231:8080/voter/elections?page='+tempPage)//get 형식
+        .then((data) => {
+            this.setState({
+                current_page : data.data.current_page,
+                list : data.data.list,
+                status : data.status
+            })
+        })
+   }
    
      renderTableRow = () => {
-        return this.props.vote.map((row, index) => {
-           let color = ""
-           let status = ""
-   
-           if(row.state === 1) {
-              color = "negative"
-              status = "투표전"
-           } else if(row.state === 3) {
-              color = "warning"
-              status = "투표완료"
-           } else {
-              status = "투표중"
-           }
-           return (
-                 <tr className={color} key={index} onClick={() => this.handleHistory(row)}>
-                       <td>
-                          {status}
-                       </td>
-                       <td>
-                          {row.title}
-                       </td>
-                       <td className="voting-text">
-                          {row.content}
-                       </td>
-                       <td>
-                          {ConvertTimestamp(row.start_time)}
-                       </td>
-                       <td>
-                          {ConvertTimestamp(row.end_time)}
-                       </td>
-                 </tr>
-              )
-        })
+         if(this.state.current_page>0 && this.state.status === 200){
+            return this.state.list.map((row, index) => {
+                let color = ""
+                let status = ""
+                if(row.state === 1) {
+                   color = "negative"
+                   status = "투표전"
+                } else if(row.state === 3) {
+                   color = "warning"
+                   status = "투표완료"
+                } else {
+                   status = "투표중"
+                }
+                return (
+                      <tr className={color} key={index} onClick={() => this.handleHistory(row)}>
+                            <td>
+                               {status}
+                            </td>
+                            <td>
+                               {row.title}
+                            </td>
+                            <td className="voting-text">
+                               {row.content}
+                            </td>
+                            <td>
+                               {ConvertTimestamp(row.start_time)}
+                            </td>
+                            <td>
+                               {ConvertTimestamp(row.end_time)}
+                            </td>
+                      </tr>
+                   )
+             })
+         }
+         else if(this.state.current_page>0 && this.state.status === 400){
+            return (
+                <tr>
+                      <td colSpan = '5'>
+                         <h1>선거가 없습니다</h1>
+                      </td>
+                </tr>
+             )
+         }
+         else{
+             return this.props.vote.list.map((row, index) => {
+            let color = ""
+            let status = ""
+            if(row.state === 1) {
+               color = "negative"
+               status = "투표전"
+            } else if(row.state === 3) {
+               color = "warning"
+               status = "투표완료"
+            } else {
+               status = "투표중"
+            }
+            return (
+                  <tr className={color} key={index} onClick={() => this.handleHistory(row)}>
+                        <td>
+                           {status}
+                        </td>
+                        <td>
+                           {row.title}
+                        </td>
+                        <td className="voting-text">
+                           {row.content}
+                        </td>
+                        <td>
+                           {ConvertTimestamp(row.start_time)}
+                        </td>
+                        <td>
+                           {ConvertTimestamp(row.end_time)}
+                        </td>
+                  </tr>
+               )
+         })}
+        
      }
     render(){
         return (
@@ -93,10 +154,10 @@ class VotingList extends Component{
                                         <a className = 'icon item'>
                                             <i aria-hidden = 'true' className = 'chevron left icon'/>
                                         </a>
-                                        <a className = 'item'>1</a>
-                                        <a className = 'item'>2</a>
-                                        <a className = 'item'>3</a>
-                                        <a className = 'item'>4</a>
+                                        <a className = 'item one' onClick = {(e) => this.pagiNation(1)}>1</a>
+                                        <a className = 'item two' onClick = {(e) => this.pagiNation(2)}>2</a>
+                                        <a className = 'item three' onClick = {(e) => this.pagiNation(3)}>3</a>
+                                        <a className = 'item four' onClick = {(e) => this.pagiNation(4)}>4</a>
                                         <a className = 'icon item'>
                                             <i aria-hidden = 'true' className = 'chevron right icon'/>
                                         </a>

@@ -5,7 +5,7 @@ class Voting extends Component{
     constructor(props){
         super(props);
     this.state = {
-        'current_page':'0',
+        'current_page':'',
         'list':[],
         'status':''
         }
@@ -18,19 +18,20 @@ class Voting extends Component{
         this.voteInfo();
     }
     voteInfo = () => { 
-         axios.get('http://52.79.177.231:8080/voter/elections')//get 형식
+         axios.get('http://52.79.177.231:8080/voter/elections?page=0')//get 형식
         .then((data) => {
             this.setState({
-                current_page : data.current_page,
+                current_page : data.data.current_page,
                 list : data.data.list,
                 status : data.status
             });
         })
     }
     render(){
+        console.log(this.state)
         return (
             <div className = 'list'>
-                <VotingList vote = {this.state.list}/>
+                <VotingList vote = {this.state}/>
             </div>
         );
     }

@@ -14,7 +14,7 @@ const Main = () => (
     <Route exact path = '/voter/elections' component = {Voting}></Route>
     <Route exact path = '/login' component = {Login}></Route>
     <Route exact path = '/sign-up' component = {Register}></Route>
-    <Route exact path = '/voter/elections/:id/candidates' component = {DescriptVote}></Route>
+    <Route exact path = '/voter/elections/:election_id/candidates' component = {DescriptVote}></Route>
     <Route exact path = '/voter/candidates/:candidate_id' component = {Candidate}></Route>
     <Route exact path="/voting/result" component={VotingResult}></Route>
 

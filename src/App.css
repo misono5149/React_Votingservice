@@ -10,10 +10,7 @@
   background: cover;
   height: 100%; 
   padding-top: 50px;
-  padding-bottom: 900px;
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-  z-index: -1;
+  padding-bottom: 800px;
 }
 
 .App-logo {

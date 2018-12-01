@@ -15,7 +15,7 @@ class Candidate extends Component{
         });
     }
  render(){
-    console.log(this.props.location.state)
+    console.log(this.props.location.status)
      return(
         <div className = 'm-l-190'>
         <div className='ui celled centered grid'>
@@ -45,11 +45,12 @@ class Candidate extends Component{
                             onClick = {this.togglePopup.bind(this)}>
                             투표하기
                     </button>
-                    {this.state.showPopup ?
-                    <Popup election_id = {this.props.location.state.election_id}
-                           candidate_id = {this.props.location.state.candidate_id} 
-                           text = '진짜로 투표를 하실 껍니까??' 
-                           closePopup = {this.togglePopup.bind(this)}/> : null}
+                    {(this.state.showPopup) ?
+                        (this.props.location.status === 200) ?
+                            <Popup election_id = {this.props.location.state.election_id}
+                                    candidate_id = {this.props.location.state.candidate_id} 
+                                    text = '진짜로 투표를 하실 껍니까??' 
+                                    closePopup = {this.togglePopup.bind(this)}/>:alert('투표중이 아닌 선거입니다'): null}
                 </div>
                 <div className='eight wide column'>
                     <button className='ui fluid button' 

@@ -25,12 +25,13 @@ class CandidateList extends Component {
         })
         .catch((err) => {console.log(err)})
     }
-    handleHistory = (person) => {
+    handleHistory = (votestatus, person) => {
         console.log(person.election_id)
-        let url = '/voter/candidates/:' + person.candidate_id
+        let url = '/voter/candidates/' + person.candidate_id
         this.props.history.push({
             pathname : url,
-            state : person
+            state : person,
+            status : votestatus
         })
     }
     renderCandidateListTable = () => {
@@ -38,11 +39,13 @@ class CandidateList extends Component {
         //candidate로 받은 것을 매핑해서 뿌려줌
         //table크기 수정 필요
         let data = this.props.candidate;
+        console.log(data);
+        console.log(this.state)
         if(this.state.list){
             return this.state.list.map((people, index) => {
                 if(data.election_id === people.election_id){
                     return(
-                        <tr className='' key = {index} onClick={() => this.handleHistory(people)}>
+                        <tr className='' key = {index} onClick={() => this.handleHistory(this.state.status, people)}>
                             <td>
                                 <img src = {img} className = 'ui image'/>                                
                             </td>
