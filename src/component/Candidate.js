@@ -14,6 +14,11 @@ class Candidate extends Component{
             showPopup : !this.state.showPopup
         });
     }
+
+    colorThis = (temp) => {
+        var colortemp = String(temp).fontcolor('red');
+        return colortemp;
+    }
  render(){
     console.log(this.props.location.status)
      return(
@@ -40,6 +45,13 @@ class Candidate extends Component{
             </div>
             <div className='row'>
                 <div className='eight wide column'>
+                    <button className='ui fluid button' 
+                            role='button' 
+                            onClick = {this.goback = () => {this.props.history.goBack()}}>
+                            목록으로
+                    </button>
+                </div>
+                <div className='eight wide column'>
                     <button className='ui fluid button'
                             role='button' 
                             onClick = {this.togglePopup.bind(this)}>
@@ -49,17 +61,11 @@ class Candidate extends Component{
                         (this.props.location.status === 200) ?
                             <Popup election_id = {this.props.location.state.election_id}
                                     candidate_id = {this.props.location.state.candidate_id} 
-                                    text = '진짜로 투표를 하실 껍니까??' 
+                                    text = {'정말로 ' + this.props.location.state.name+ ' 후보에게 투표를 하실 껍니까??' }
                                     closePopup = {this.togglePopup.bind(this)}/>:alert('투표중이 아닌 선거입니다'): null}
                 </div>
-                <div className='eight wide column'>
-                    <button className='ui fluid button' 
-                            role='button' 
-                            onClick = {this.goback = () => {this.props.history.goBack()}}>
-                            목록으로
-                    </button>
-                </div>
             </div>
+            
       </div>
       </div>
      )
