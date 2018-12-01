@@ -63,7 +63,7 @@ class VotingList extends Component{
                 <div className = 'ui horizontal divider'></div>
                 <div className = 'ui grid centered'>
                     <div className = 'fourteen wide computer column'>
-                        <table className = 'ui celled table selectable' id = 'thistable'>
+                        <table className = 'ui celled table selectable'>
                             <thead>
                                 <tr>
                                     <th>

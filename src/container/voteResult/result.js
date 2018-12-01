@@ -59,13 +59,13 @@ class VotingResult extends Component {
 			id:3,
 			all_vote:1567,
 			candidate:[{
-				name:"김지말",
+				name:"Kate",
 				poll:684
 			},{
-				name: "최건호",
+				name: "Andy",
 				poll:321
 			},{
-				name: "박기범",
+				name: "Stacy",
 				poll:865
 			}]
 

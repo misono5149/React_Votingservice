@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import img from '../../assets/img/matthew.png'
 import axios from 'axios'
+import './candidatelist.css'
 class CandidateList extends Component {
     constructor(props){
         super(props);
@@ -57,9 +58,9 @@ class CandidateList extends Component {
         }
         else{
             return(
-                    <tr className='ui table stretched centered'>
-                        <td>
-                            아직 후보자가 없네요                            
+                    <tr className='t-a-c'>
+                        <td colSpan = '3'>
+                            <h1>아직 후보자가 없네요</h1>                            
                         </td>
                     </tr>
                 )}
@@ -71,7 +72,7 @@ class CandidateList extends Component {
                     <div className = 'fourteen wide computer column'>
                         <table className = 'ui celled red large table selectable'>
                             <thead>
-                                <tr>
+                                <tr className = 't-a-c'>
                                     <th>후보자 사진</th>
                                     <th>후보자 번호</th>
                                     <th>후보자 이름</th>

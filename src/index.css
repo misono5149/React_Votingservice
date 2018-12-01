@@ -5,7 +5,12 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; 
+  background: url("./assets/img/background-img.jpg");
+  background-size:contain;
+  background-position:top;
+  background: cover;
+ 
 }
 
 code {

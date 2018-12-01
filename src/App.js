@@ -25,18 +25,17 @@ class App extends Component {
   render() {
     const is_auth = true;
     return (
+      
       <div className="App">
-      {
-      	is_auth?(
-      		<div> 
-      			<MainNav/>
-		          <div className="content">
+          {is_auth?(
+      		  <div> 
+      			  <MainNav/>
+		          <div className="content bg">
 		         	  <Main/>
 		         </div>
         	</div>
         ):(<Login />)
       }
-         
       </div>
 
     );

@@ -1,5 +1,19 @@
 .App {
   text-align: center;
+ 
+  
+}
+.bg{
+  background: url("./assets/img/background-img.jpg");
+  background-size: cover;
+  background-position:center;
+  background: cover;
+  height: 100%; 
+  padding-top: 50px;
+  padding-bottom: 900px;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  z-index: -1;
 }
 
 .App-logo {
@@ -16,8 +30,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  
 }
-
+.content {
+  z-index: 10;
+}
 .App-link {
   color: #61dafb;
 }

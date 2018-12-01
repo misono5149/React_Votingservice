@@ -21,17 +21,17 @@ class DescriptVote extends Component{
                                 사진
                             </div>
                             <div className = 'twelve wide column text-left'>
-                            <div className = 'voting-title m-b-50'>
-                                선거 기간 
+                            <div className = 'voting-title  m-b-20'>
+                                <h2>선거 기간 =></h2>
                             </div>
-                            <div className = 'm-t-20 m-b-20'>
-                                {ConvertTimestamp(this.props.location.state.start_time)} ~ {ConvertTimestamp(this.props.location.state.end_time)}
+                            <div className = 'm-t-20 m-b-50'>
+                                <h3>{ConvertTimestamp(this.props.location.state.start_time)} ~ {ConvertTimestamp(this.props.location.state.end_time)}</h3>
                             </div>
                             <div className = 'voting-content'>
-                                선거 내용
+                                <h2>선거 내용 =></h2>
                             </div>
                             <div className = 'm-t-20 m-b-20'>
-                                {this.props.location.state.content}
+                                <h3>{this.props.location.state.content}</h3>
                             </div>
                         </div>
                         </div>
