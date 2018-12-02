@@ -7,12 +7,22 @@ class DescriptVote extends Component{
         super(props);
         this.state = {}; // there is no state
     } 
-    
+    isVoting = (voteStatus) => {
+        if(voteStatus === 2){ //투표가능
+            return ' <투표가능!>'
+        }
+        else if(voteStatus === 3){ //투표종료
+            return ' <종료된 선거!>'
+        }
+        else{ //투표 시작전
+            return ' <시작 전 선거>'
+        }
+    }
     render(){
         return (
             <div className = 'about-voting'>
                 <div className = 'title text-left m-b-50'>
-                    {this.props.location.state.title}
+                    {this.props.location.state.title}   {this.isVoting(this.props.location.state.state)}
                 </div>
                 <div className = 'ui divider'/>
                     <div className = 'ui internally grid'>

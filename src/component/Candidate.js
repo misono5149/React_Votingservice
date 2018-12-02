@@ -20,7 +20,7 @@ class Candidate extends Component{
         return colortemp;
     }
  render(){
-    console.log(this.props.location.status)
+    console.log(this.props.location.voteState)
      return(
         <div className = 'm-l-190'>
         <div className='ui celled centered grid'>
@@ -58,7 +58,7 @@ class Candidate extends Component{
                             투표하기
                     </button>
                     {(this.state.showPopup) ?
-                        (this.props.location.status === 200) ?
+                        (this.props.location.voteState === 2) ?
                             <Popup election_id = {this.props.location.state.election_id}
                                     candidate_id = {this.props.location.state.candidate_id} 
                                     text = {'정말로 ' + this.props.location.state.name+ ' 후보에게 투표를 하실 껍니까??' }

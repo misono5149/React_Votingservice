@@ -25,13 +25,12 @@ class CandidateList extends Component {
         })
         .catch((err) => {console.log(err)})
     }
-    handleHistory = (votestatus, person) => {
-        console.log(person.election_id)
+    handleHistory = (votestate, person) => {
         let url = '/voter/candidates/' + person.candidate_id
         this.props.history.push({
             pathname : url,
             state : person,
-            status : votestatus
+            voteState : votestate
         })
     }
     renderCandidateListTable = () => {
@@ -45,7 +44,7 @@ class CandidateList extends Component {
             return this.state.list.map((people, index) => {
                 if(data.election_id === people.election_id){
                     return(
-                        <tr className='' key = {index} onClick={() => this.handleHistory(this.state.status, people)}>
+                        <tr className='' key = {index} onClick={() => this.handleHistory(this.props.location.state.state, people)}>
                             <td>
                                 <img src = {img} className = 'ui image'/>                                
                             </td>

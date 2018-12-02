@@ -28,23 +28,16 @@ class Login extends Component{
         }
         else{
         e.preventDefault();
-        const user = {
+        const user = [{ //params
             id : this.state.id,
             pw : this.state.pw
-        }
+        }]
+        const url = 'http://52.79.177.231:8080/login'
         console.log(user); //확인 완료
-        return (
-            axios.post('/login', {user}) //post 형식
-            .then(res => res.json)
-            .then(res => 
-                {this.setState({id : res.data.id, pw : res.data.pw})}
-                )
-            .then(json => console.log(json))
-            .then(this.setState.is_auth = true)
-            .catch(err => alert(err))
-           
-        )
-            }
+        axios.post(url, {user})
+        .then((res) => (console.log(res)))
+        .catch((err) => (console.log(err)))
+    }
     }   
     
     render(){

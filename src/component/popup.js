@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './popup.css';
+import axios from 'axios'
 class Popup extends Component {
     constructor(props){
         super(props);
@@ -7,10 +8,16 @@ class Popup extends Component {
     }
 
     voting = (candidateid, electionid) => {
-       
         console.log(candidateid);
         console.log(electionid);
-        
+        const vote = [{ //params
+            election_id : electionid,
+            candidate_id : candidateid
+        }]
+        const url = 'http://52.79.177.231:8080/voter/elections/voting'
+        axios.post(url, {vote})
+        .then((res) => (console.log(res)))
+        .catch((err) => (console.log(err)))
     }
     render(){
         console.log(this.props);

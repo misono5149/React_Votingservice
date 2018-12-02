@@ -36,7 +36,7 @@ class VotingList extends Component{
    }
    
      renderTableRow = () => {
-         if(this.state.current_page>0 && this.state.status === 200){
+         if(this.state.current_page>0 && this.state.status === 200){ //정상 페이지면
             return this.state.list.map((row, index) => {
                 let color = ""
                 let status = ""
