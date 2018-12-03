@@ -11,14 +11,16 @@ class VotingResultContent extends Component {
 	renderSortinglist = () => {
 		let list = Sortnum(this.props.data.candidate);
 		let cand_name = [];
+		let prize = []; //순위 배열
 		for(let i = 0; i<list.length; i++){
 			cand_name[i] = list[i].name;
+			prize.push(
+				<Segment>{i+1}위 : {cand_name[i]}</Segment>
+			  )
 			}
 			return (
 				<div className = ''>
-					<Segment>1위 : {cand_name[0]}</Segment>
-					<Segment>2위 : {cand_name[1]}</Segment>
-					<Segment>3위 : {cand_name[2]}</Segment>
+					{prize}
 				</div>
 			)
 	}

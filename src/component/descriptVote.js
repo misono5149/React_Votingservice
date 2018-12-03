@@ -35,7 +35,7 @@ class DescriptVote extends Component{
                                 <h2>선거 기간 =></h2>
                             </div>
                             <div className = 'm-t-20 m-b-50'>
-                                <h3>{ConvertTimestamp(this.props.location.state.start_time)} ~ {ConvertTimestamp(this.props.location.state.end_time)}</h3>
+                                <h3>{(this.props.location.state.start_time)} ~ {(this.props.location.state.end_time)}</h3>
                             </div>
                             <div className = 'voting-content'>
                                 <h2>선거 내용 =></h2>

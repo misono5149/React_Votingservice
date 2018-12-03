@@ -28,109 +28,47 @@ class VotingResult extends Component {
 	  			poll:10
 	  		}]
 
-            },
-            {
-	  		title: "101대 회장선거",
-	  		text:"회장선거",
-	  		start_time:1541989543,
-	  		end_time:1542680743,
-	  		state:3,
-	  		id:2,
-	  		all_vote:120,
-	  		candidate:[{
-	  			name:"김지말",
-	  			poll:20
-	  		},{
-	  			name: "최건호",
-	  			poll:40
-	  		},{
-	  			name: "박기범",
-	  			poll:50
-	  		}]
-
-            },
-			
-			{
-			title: "1대 회장선거",
-			text:"회장선거",
-			start_time:1541989543,
-			end_time:1542680743,
-			state:3,
-			id:3,
-			all_vote:1567,
-			candidate:[{
-				name:"Kate",
-				poll:684
-			},{
-				name: "Andy",
-				poll:321
-			},{
-				name: "Stacy",
-				poll:865
-			}]
-
-		  },
-		  {
-			title: "7대 회장선거",
-			text:"회장선거",
-			start_time:1541989543,
-			end_time:1542680743,
-			state:3,
-			id:3,
-			all_vote:1567,
-			candidate:[{
-				name:"Kat3e",
-				poll:684
-			},{
-				name: "An2dy",
-				poll:321
-			},{
-				name: "St4acy",
-				poll:865
-			}]
-
-		  },
-		  {
-			title: "1대 회장선거",
-			text:"회장선거",
-			start_time:1541989543,
-			end_time:1542680743,
-			state:3,
-			id:3,
-			all_vote:1567,
-			candidate:[{
-				name:"Kate",
-				poll:684
-			},{
-				name: "Andy",
-				poll:321
-			},{
-				name: "Stacy",
-				poll:865
-			}]
-
-		  }
+            }
 		]
 		
 	  }
         this.state = {};
 	}
 	/*{
-		"current_page":0,
-		"election_info":
-			{
-				"title":"제 101호 컴퓨터공학과 회장 선거",
-				"major":"컴퓨터공학과",
-				"college":"공과대학",
-				"content":"컴퓨터공학과회장선거",
-				"start_time":"1541989543",
-				"end_time":"1542690743",
-				"state":3,
-				"election_id":100,
-				"admin":"201202274"},
-				"result":[],
-				"status":200
-			} 
+    	"current_page": 0,
+    	"election": [
+        	{
+            	"election_id": 100,
+            	"title": "제 101호 컴퓨터공학과 회장 선거", //사용
+            	"start_time": "2018-11-12 12:23:00",  //사용
+            	"end_time": "2018-11-12 12:23:00",	// 사용
+            	"state": 3,			//사용
+            	"candidate": []
+        	},
+       		{
+            	"election_id": 99,
+            	"title": "제 101호 학생회장",
+            	"start_time": "2018-11-12 12:23:00",
+            	"end_time": "2018-11-12 12:23:00",
+            	"state": 3,
+            	"candidate": [
+                	{
+                    	"election_id": 99,
+                    	"all_vote": 4,
+                   	 	"candidate_id": 13,
+                    	"poll": 4,
+                    	"student_id": "201301923",
+                    	"name": "도로링",
+                    	"major": "고양이학과",
+                    	"college": "동물대학",
+                    	"thumbnail": "aaa",
+                    	"resume": "ddd"
+                }
+            ]
+        }
+    ],
+    "status": 200
+}
 			*/
   render() {
     return (

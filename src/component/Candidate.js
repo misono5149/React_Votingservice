@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Candidate.css';
 import Popup from './popup.js'
+import { Segment } from 'semantic-ui-react';
 
 class Candidate extends Component{
         constructor(props){
@@ -31,14 +32,14 @@ class Candidate extends Component{
             <div className='eight wide column'>
                 <div className='ui celled grid'>
                     <div className='row'>
-                        <div className='five wide column'>{this.props.location.state.name}</div>
-                        <div className='five wide column'>{this.props.location.state.id}</div>
-                        <div className='six wide column'>{this.props.location.state.party}</div>
+                        <div className='five wide column'>이름 :  {this.props.location.state.name}</div>
+                        <div className='five wide column'>대학 :  {this.props.location.state.college}</div>
+                        <div className='six wide column'>전공 :  {this.props.location.state.major}</div>
                     </div>
                 </div>
                 <div className='ui celled grid'>
                     <div className='row'>
-                        <p>{this.props.location.state.resume}</p>
+                            <p>{this.props.location.state.resume}</p>
                     </div>
                 </div>
             </div>
@@ -61,7 +62,7 @@ class Candidate extends Component{
                         (this.props.location.voteState === 2) ?
                             <Popup election_id = {this.props.location.state.election_id}
                                     candidate_id = {this.props.location.state.candidate_id} 
-                                    text = {'정말로 ' + this.props.location.state.name+ ' 후보에게 투표를 하실 껍니까??' }
+                                    text = {'정말로 ' + this.props.location.state.name+ ' 후보에게 투표를 하실 껍니까??'} 
                                     closePopup = {this.togglePopup.bind(this)}/>:alert('투표중이 아닌 선거입니다'): null}
                 </div>
             </div>

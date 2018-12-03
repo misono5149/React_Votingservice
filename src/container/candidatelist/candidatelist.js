@@ -16,10 +16,10 @@ class CandidateList extends Component {
         this.candidateInfo();
     }
     candidateInfo = () => { 
-         axios.get('http://52.79.177.231:8080/voter/elecitons/'+this.props.candidate.election_id+'/candidates') //get 형식
+         axios.get('http://52.79.177.231:8080/voter/election/info/'+this.props.candidate.election_id+'/candidates') //get 형식
         .then((data) => {
             this.setState({
-                list : data.data.list,
+                list : data.data.candidate,
                 status : data.status
             });
         })
@@ -40,7 +40,7 @@ class CandidateList extends Component {
         let data = this.props.candidate;
         console.log(data);
         console.log(this.state)
-        if(this.state.list){
+        if(this.state.status === 200){
             return this.state.list.map((people, index) => {
                 if(data.election_id === people.election_id){
                     return(

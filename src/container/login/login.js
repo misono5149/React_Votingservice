@@ -22,8 +22,24 @@ class Login extends Component{
     /* Call api with asynchronos  */
     _getUserAuth = async () => {await this.clickLogin}
     
+    setCookie = (name, value, exp) => {
+        var date = new Date();
+        date.setTime(date.getTime() + exp*24*60*60*1000);
+        document.cookie = namae + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+      };
+    /*
+        setCookie('name', 'Ethan', 7); /* name=Ethan, 7일 뒤 만료됨 
+        setCookie('favoriteColor', 'Blue', 7); /* favoriteColor=Blue, 7일 뒤 만료됨 
+    */
+    getCookie = (name) => {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+    };
+        /*getCookie('name');  결과: Ethan */
+     
     clickLogin = e => { //클릭시
         if(this.state.id === '' || this.state.pw === ''){
+            
             alert('id나 pw를 입력해주세요')
         }
         else{
@@ -37,7 +53,8 @@ class Login extends Component{
         axios.post(url, {user})
         .then((res) => (console.log(res)))
         .catch((err) => (console.log(err)))
-    }
+        }
+        
     }   
     
     render(){

@@ -61,10 +61,10 @@ class VotingList extends Component{
                                {row.content}
                             </td>
                             <td>
-                               {ConvertTimestamp(row.start_time)}
+                               {(row.start_time)}
                             </td>
                             <td>
-                               {ConvertTimestamp(row.end_time)}
+                               {(row.end_time)}
                             </td>
                       </tr>
                    )
@@ -104,10 +104,10 @@ class VotingList extends Component{
                            {row.content}
                         </td>
                         <td>
-                           {ConvertTimestamp(row.start_time)}
+                           {(row.start_time)}
                         </td>
                         <td>
-                           {ConvertTimestamp(row.end_time)}
+                           {(row.end_time)}
                         </td>
                   </tr>
                )
