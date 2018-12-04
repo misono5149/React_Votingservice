@@ -18,7 +18,7 @@ class MainNav extends Component{
                     <i aria-hidden='true' className='trophy icon' />
                     투표결과목록
                   </Link>
-                  <Link to ={{pathname : '/login', state : !this.props.is_auth}} className = 'item'>
+                  <Link to ={{pathname : '/login'}} className = 'item'>
                     <i aria-hidden='true' className='power off icon'/>
                     Logout
                   </Link>

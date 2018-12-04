@@ -4,6 +4,7 @@ import './votingList.css'
 import '../lib/time.js'
 import '../App.css';
 import axios from 'axios'
+import { getCookie } from '../lib/getcookie';
 class VotingList extends Component{
     constructor(props){
         super(props);
@@ -23,8 +24,8 @@ class VotingList extends Component{
     }
     pagiNation = (pagenum) => { 
         const tempPage = pagenum;
-        console.log(tempPage)
-        axios.get('http://52.79.177.231:8080/voter/elections?page='+tempPage)//get 형식
+        axios.get('http://52.79.177.231:8080/voter/elections?page='+tempPage ,
+            {headers : getCookie()})//get 형식
         .then((data) => {
             this.setState({
                 current_page : data.data.current_page,
