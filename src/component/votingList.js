@@ -12,20 +12,24 @@ class VotingList extends Component{
             'current_page':'',
             'list':[],
             'status':'',
-        }; // there is no state
+        } // there is no state
     }
     handleHistory = (item) => {
         let url = '/voter/elections/:' + item.election_id + '/candidates'
         this.props.history.push({
             pathname: url,
             state : item,
-            is_auth : this.props.vote.is_auth //검증필요
           })
     }
     pagiNation = (pagenum) => { 
         const tempPage = pagenum;
-        axios.get('http://52.79.177.231:8080/voter/elections?page='+tempPage ,
-            {headers : getCookie()})//get 형식
+        var config = {
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer '+getCookie()
+            }
+          };
+        axios.get('http://52.79.177.231:8080/voter/elections?page='+tempPage ,config)//get 형식
         .then((data) => {
             this.setState({
                 current_page : data.data.current_page,

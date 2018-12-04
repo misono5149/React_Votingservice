@@ -9,10 +9,10 @@ class Voting extends Component{
         'current_page':'',
         'list':[],
         'status':'',
-    }
+        }
     }
 
-      /* Call api with asynchronos  
+      /* fCall api with asynchronos  
         before components mount in this web page 
         vote list are called by api server */
     componentDidMount(){
@@ -21,10 +21,13 @@ class Voting extends Component{
    
     /*getCookie('name');  결과: Ethan */
     voteInfo = () => { 
-        axios.get('http://52.79.177.231:8080/voter/elections?page=0', 
-        {
-            headers : getCookie()
-        })//get 형식
+        var config = {
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer '+getCookie()
+            }
+          };
+        axios.get('http://52.79.177.231:8080/voter/elections?page=0', config)//get 형식
         .then((data) => {
             this.setState({
                 current_page : data.data.current_page,

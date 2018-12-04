@@ -10,6 +10,8 @@ import DescriptVote from './component/descriptVote';
 import Candidate from './component/Candidate.js';
 import VotingResult from './container/voteResult/result.js'
 import { auth } from './lib/auth';
+
+
 const Main = () => (
   <Switch>
     <Route exact path = '/voter/elections' component = {Voting}></Route>
@@ -38,7 +40,6 @@ class App extends Component {
 
       }
       </div>
-
     );
   }
 }

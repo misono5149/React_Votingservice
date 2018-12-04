@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import img from '../../assets/img/matthew.png'
 import axios from 'axios'
 import './candidatelist.css'
+import {getCookie} from '../../lib/getcookie.js'
 class CandidateList extends Component {
     constructor(props){
         super(props);
@@ -16,7 +17,13 @@ class CandidateList extends Component {
         this.candidateInfo();
     }
     candidateInfo = () => { 
-         axios.get('http://52.79.177.231:8080/voter/election/info/'+this.props.candidate.election_id+'/candidates') //get 형식
+        var config = {
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer '+getCookie()
+            }
+          };
+         axios.get('http://52.79.177.231:8080/voter/election/info/'+this.props.candidate.election_id+'/candidates', config) //get 형식
         .then((data) => {
             this.setState({
                 list : data.data.candidate,

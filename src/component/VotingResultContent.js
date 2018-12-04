@@ -7,15 +7,13 @@ import {Pie} from 'react-chartjs-2'
 import 'chartjs-plugin-annotation'
 
 class VotingResultContent extends Component {
-	
+
 	renderSortinglist = () => {
 		let list = Sortnum(this.props.data.candidate);
-		let cand_name = [];
 		let prize = []; //순위 배열
 		for(let i = 0; i<list.length; i++){
-			cand_name[i] = list[i].name;
 			prize.push(
-				<Segment>{i+1}위 : {cand_name[i]}</Segment>
+				<Segment>{i+1}위 : {list[i].name} {'( '+ list[i].poll+'표 )'}</Segment>
 			  )
 			}
 			return (
@@ -70,7 +68,7 @@ class VotingResultContent extends Component {
 				options = {{
 					responsive : true,
 					legend:{
-						display:true, 
+						display: true, 
 						position : 'bottom',
 					},
 					maintainAspectRatio: false
@@ -83,14 +81,18 @@ class VotingResultContent extends Component {
 	}
 
 	render() {
+		console.log(this.props.data)
 		return (
 			<div className="voting-result-content">
 				<div className='ui card'>
-					<div className='content'>
-				    <div className='header'>{this.props.data.title} 의 결과</div>
-				    <div className='meta'>
+					<div className='content resultcard'>
+				    <div className='header'>{this.props.data.title}<br/> 결과</div>
+				    <div className='meta'> <br/>
                       <span className='date'>
-                      {ConvertTimestamp(this.props.data.start_time)} ~ {ConvertTimestamp(this.props.data.end_time)}
+                      시작 시간 : {this.props.data.start_time}      <br/>
+                      </span>
+					  <span className='date'>
+                      종료 시간 : {this.props.data.end_time}
                       </span>
 				    </div>
 				    <div className='description'>

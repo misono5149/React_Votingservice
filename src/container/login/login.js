@@ -26,6 +26,15 @@ class Login extends Component{
     setCookie = (value) => {
        document.cookie = 'token' + '=' + value + ';path=/';
       };
+
+    sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+          if ((new Date().getTime() - start) > milliseconds){
+            break;
+          }
+        }
+      }
      
     clickLogin = e => { //클릭시
         if(this.state.id === '' || this.state.pw === ''){
@@ -39,11 +48,12 @@ class Login extends Component{
             password : this.state.pw
         }]
         const url = 'http://52.79.177.231:8080/login'
-        console.log(user); //확인 완료
         axios.post(url, {user})
         .then((res) => {
             if(res.data.is_success === 200){  // 인증 완료
                 this.setCookie(res.data.auth_token) // 쿠키저장
+                this.sleep(1000)
+                alert('로그인 되었습니다')
                 this.handleHistory()        //선거목록 이동
                 
             }
