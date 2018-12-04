@@ -8,12 +8,16 @@ class CandidateList extends Component {
         super(props);
 
        this.state = {
-           list : [],
-           status :''
+           'list' : [],
+           'status' : '',
+           'is_auth' : ''
        }
     }
     componentDidMount(){
         this.candidateInfo();
+        this.setState({
+            is_auth : this.props.auth
+        })
     }
     candidateInfo = () => { 
          axios.get('http://52.79.177.231:8080/voter/election/info/'+this.props.candidate.election_id+'/candidates') //get 형식
@@ -25,12 +29,13 @@ class CandidateList extends Component {
         })
         .catch((err) => {console.log(err)})
     }
-    handleHistory = (votestate, person) => {
+    handleHistory = (votestate, person, auth) => {
         let url = '/voter/candidates/' + person.candidate_id
         this.props.history.push({
             pathname : url,
             state : person,
-            voteState : votestate
+            voteState : votestate,
+            is_auth : auth
         })
     }
     renderCandidateListTable = () => {
@@ -44,7 +49,7 @@ class CandidateList extends Component {
             return this.state.list.map((people, index) => {
                 if(data.election_id === people.election_id){
                     return(
-                        <tr className='' key = {index} onClick={() => this.handleHistory(this.props.location.state.state, people)}>
+                        <tr className='' key = {index} onClick={() => this.handleHistory(this.props.location.state.state, people, this.state.is_auth)}>
                             <td>
                                 <img src = {img} className = 'ui image'/>                                
                             </td>

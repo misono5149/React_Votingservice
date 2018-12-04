@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import Login from '../container/login/login';
 
 class MainNav extends Component{
 
     render() {
+      console.log(this.props.location)
         return (
           <div className="header">
               <div className='toc'>
@@ -16,7 +18,7 @@ class MainNav extends Component{
                     <i aria-hidden='true' className='trophy icon' />
                     투표결과목록
                   </Link>
-                  <Link to = '/login' className = 'item'>
+                  <Link to ={{pathname : '/login', state : !this.props.is_auth}} className = 'item'>
                     <i aria-hidden='true' className='power off icon'/>
                     Logout
                   </Link>

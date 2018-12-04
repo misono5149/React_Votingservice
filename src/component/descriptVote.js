@@ -50,7 +50,7 @@ class DescriptVote extends Component{
                                 선거에 등록 된 후보자 목록
                             </div>
                         <div className = 'row'>
-                            <CandidateList candidate = {this.props.location.state}/>
+                            <CandidateList candidate = {this.props.location.state} auth = {this.props.location.is_auth}/>
                         </div>
                         </div>
                     </div>

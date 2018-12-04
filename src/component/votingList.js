@@ -3,7 +3,6 @@ import {withRouter} from 'react-router-dom'
 import './votingList.css'
 import '../lib/time.js'
 import '../App.css';
-import { ConvertTimestamp } from '../lib/time.js';
 import axios from 'axios'
 class VotingList extends Component{
     constructor(props){
@@ -11,15 +10,15 @@ class VotingList extends Component{
         this.state = {
             'current_page':'',
             'list':[],
-            'status':''
+            'status':'',
         }; // there is no state
     }
-
     handleHistory = (item) => {
         let url = '/voter/elections/:' + item.election_id + '/candidates'
         this.props.history.push({
             pathname: url,
-            state : item
+            state : item,
+            is_auth : this.props.vote.is_auth //검증필요
           })
     }
     pagiNation = (pagenum) => { 

@@ -8,6 +8,7 @@ class Candidate extends Component{
         super(props);
         this.state = {
             showPopup : false,
+            'is_auth' : ''
         }; // there is no state
     } 
     togglePopup(){
@@ -15,7 +16,11 @@ class Candidate extends Component{
             showPopup : !this.state.showPopup
         });
     }
-
+    componentDidMount(){
+        this.setState({
+            is_auth : this.props.is_auth
+        })
+    }
     colorThis = (temp) => {
         var colortemp = String(temp).fontcolor('red');
         return colortemp;
@@ -63,7 +68,8 @@ class Candidate extends Component{
                             <Popup election_id = {this.props.location.state.election_id}
                                     candidate_id = {this.props.location.state.candidate_id} 
                                     text = {'정말로 ' + this.props.location.state.name+ ' 후보에게 투표를 하실 껍니까??'} 
-                                    closePopup = {this.togglePopup.bind(this)}/>:alert('투표중이 아닌 선거입니다'): null}
+                                    closePopup = {this.togglePopup.bind(this)}
+                                    auth = {this.state.is_auth}/>:alert('투표중이 아닌 선거입니다'): null}
                 </div>
             </div>
             

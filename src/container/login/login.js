@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom'
 import './login.css';
 
 class Login extends Component{
@@ -9,7 +9,7 @@ class Login extends Component{
         this.state = {
             id : '',
             pw : '',
-            is_auth : props.is_auth
+            is_auth : this.props.is_auth
         }
         /* 입력 state관리  */
         this.changeID = this.changeID.bind(this)
@@ -19,23 +19,13 @@ class Login extends Component{
     changeID(e){this.setState({id : e.target.value})}
     changePW(e){this.setState({pw : e.target.value})}
 
+    
     /* Call api with asynchronos  */
     _getUserAuth = async () => {await this.clickLogin}
     
-    setCookie = (name, value, exp) => {
-        var date = new Date();
-        date.setTime(date.getTime() + exp*24*60*60*1000);
-        document.cookie = namae + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    setCookie = (value) => {
+       document.cookie = 'token' + '=' + value + ';path=/';
       };
-    /*
-        setCookie('name', 'Ethan', 7); /* name=Ethan, 7일 뒤 만료됨 
-        setCookie('favoriteColor', 'Blue', 7); /* favoriteColor=Blue, 7일 뒤 만료됨 
-    */
-    getCookie = (name) => {
-    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return value? value[2] : null;
-    };
-        /*getCookie('name');  결과: Ethan */
      
     clickLogin = e => { //클릭시
         if(this.state.id === '' || this.state.pw === ''){
@@ -45,18 +35,37 @@ class Login extends Component{
         else{
         e.preventDefault();
         const user = [{ //params
-            id : this.state.id,
-            pw : this.state.pw
+            student_id : this.state.id,
+            password : this.state.pw
         }]
         const url = 'http://52.79.177.231:8080/login'
         console.log(user); //확인 완료
         axios.post(url, {user})
-        .then((res) => (console.log(res)))
+        .then((res) => {
+            if(res.data.is_success === 200){  // 인증 완료
+                this.setState({is_auth : true})          // 인증 true
+                console.log(this.props.auth)
+                this.setCookie(res.data.auth_token) // 쿠키저장
+                this.handleHistory(this.state.is_auth)        //선거목록 이동
+            }
+            else{
+                this.setState({
+                    is_auth : false
+                })
+                alert('아이디나 비밀번호가 일치하지 않습니다')
+            }
+        })
         .catch((err) => (console.log(err)))
         }
         
     }   
-    
+    handleHistory = (auth) => {
+        let url = '/voter/elections'
+        this.props.history.push({
+            pathname : url,
+            is_auth : auth
+        })
+    }
     render(){
         return(
         <div className = 'signin_div'>
@@ -72,8 +81,7 @@ class Login extends Component{
                             <label>비밀번호</label>
                             <input type = 'password' placeholder = 'input user password' onChange = {this.changePW}/>
                         </div>
-                        <button type = 'submit' className = 'ui button' role = 'submit' onClick = {this.clickLogin}>로그인</button>
-                        <Link to = '/sign-up' className = 'ui button'>회원가입</Link>
+                        <button type = 'submit' className = 'ui button fluid' role = 'submit' onClick = {this.clickLogin}>로그인</button>
                     </form>
                 </div>
             </div>
@@ -82,4 +90,4 @@ class Login extends Component{
     }
 }
 
-export default Login;
+export default withRouter(Login);

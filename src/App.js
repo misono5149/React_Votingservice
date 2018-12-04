@@ -21,20 +21,21 @@ const Main = () => (
   </Switch>
 )
 class App extends Component {
-  
+  state = {
+    'is_auth' : false
+  }
   render() {
-    const is_auth = true;
     return (
       
       <div className="App">
-          {is_auth?(
+          {this.state.is_auth?(
       		  <div> 
       			  <MainNav/>
 		          <div className="content bg">
 		         	  <Main/>
 		         </div>
         	</div>
-        ):(<Login />)
+        ):(<Login auth = {this.state.is_auth}/>)
       }
       </div>
 

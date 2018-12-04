@@ -6,6 +6,7 @@ class Popup extends Component {
         super(props);
     }
     voting = (candidateid, electionid) => {
+        if(this.props.auth){
         const vote = { //params
             election_id : electionid,
             candidate_id : candidateid
@@ -18,6 +19,13 @@ class Popup extends Component {
             }
         })
         .catch((err) => (alert('알 수없는 오류가 발생하였습니다. 투표가 정상적으로 이루어 지지 않았습니다 에러 :' + err)))
+        }
+        else{
+            alert('다시 로그인 해주시기 바랍니다.')
+            this.props.history.push({
+                pathname: '/login'
+            })
+        }
     }
 
     render(){
