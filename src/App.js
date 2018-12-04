@@ -22,7 +22,7 @@ const Main = () => (
 )
 class App extends Component {
   state = {
-    'is_auth' : false
+    is_auth : false
   }
   render() {
     return (
