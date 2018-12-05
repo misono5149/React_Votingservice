@@ -9,25 +9,25 @@ class Voting extends Component{
         'current_page':'',
         'list':[],
         'status':'',
-        'is_auth':'',
         }
     }
 
-      /* Call api with asynchronos  
+      /* fCall api with asynchronos  
         before components mount in this web page 
         vote list are called by api server */
     componentDidMount(){
         this.voteInfo();
-        this.setState({
-            is_auth : this.props.location.is_auth,
-        })
     }
    
     /*getCookie('name');  결과: Ethan */
     voteInfo = () => { 
-         axios.get('http://52.79.177.231:8080/voter/elections?page=0', {
-             headers : getCookie() //헤더에 토큰실어서 보냄
-            })//get 형식
+        var config = {
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer '+getCookie()
+            }
+          };
+        axios.get('http://52.79.177.231:8080/voter/elections?page=0', config)//get 형식
         .then((data) => {
             this.setState({
                 current_page : data.data.current_page,

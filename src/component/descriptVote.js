@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {ConvertTimestamp} from '../lib/time.js'
 import CandidateList from '../container/candidatelist/candidatelist.js'
 import './descriptVote.css';
 class DescriptVote extends Component{
@@ -50,7 +49,7 @@ class DescriptVote extends Component{
                                 선거에 등록 된 후보자 목록
                             </div>
                         <div className = 'row'>
-                            <CandidateList candidate = {this.props.location.state} auth = {this.props.location.is_auth}/>
+                            <CandidateList candidate = {this.props.location.state}/>
                         </div>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './popup.css';
 import axios from 'axios'
+import {getCookie} from '../lib/getcookie.js'
 class Popup extends Component {
     constructor(props){
         super(props);
@@ -8,11 +9,19 @@ class Popup extends Component {
     voting = (candidateid, electionid) => {
         if(this.props.auth){
         const vote = { //params
-            election_id : electionid,
-            candidate_id : candidateid
+           params:{ 
+                election_id : electionid,
+                candidate_id : candidateid
+           }
         }
         const url = 'http://52.79.177.231:8080/voter/elections/voting'
-        axios.post(url, vote)
+        var config = {
+            headers: {
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer '+getCookie()
+            }
+          };
+        axios.post(url, vote, config)
         .then((res) => {
             if(res.status === 200){
                 alert('투표하였습니다')

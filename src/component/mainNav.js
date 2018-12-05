@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Login from '../container/login/login';
+import {deleteCookie} from '../lib/delcookie.js'
+import { auth } from '../lib/auth.js';
 
 class MainNav extends Component{
 
+    handleLogout = () => {
+      deleteCookie();
+      auth();
+      alert('로그아웃 되었습니다')
+    }
     render() {
-      console.log(this.props.location)
         return (
           <div className="header">
               <div className='toc'>
@@ -18,7 +23,7 @@ class MainNav extends Component{
                     <i aria-hidden='true' className='trophy icon' />
                     투표결과목록
                   </Link>
-                  <Link to ={{pathname : '/login', state : !this.props.is_auth}} className = 'item'>
+                  <Link to ={{pathname : '/login'}} onClick = {() => this.handleLogout()} className = 'item'>
                     <i aria-hidden='true' className='power off icon'/>
                     Logout
                   </Link>

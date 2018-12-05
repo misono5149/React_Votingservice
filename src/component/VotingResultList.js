@@ -8,7 +8,7 @@ class VotingResultList extends Component {
 	}
 
 	renderCandidateListRender = () => {
-
+		console.log(this.props.data)
 		let count = Math.ceil(this.props.data.length/4)
 		let candidateListComponents = []
 		
@@ -33,12 +33,22 @@ class VotingResultList extends Component {
 		}
 		return candidateListComponents;
 	}
-
+	noResult = () => {
+		return (<div className = 'noresult_div'>
+            <div className = 'ui middle aligned centered grid container'>
+                	<h1 className = 'ui centered header'>현재없음</h1>
+            </div>
+        </div>
+		);
+	}
 	render() {
 		return(
 			<div className="voting-result-list row">
 				<div className="ui equal width grid row">
-					{this.renderCandidateListRender()}
+					{
+						this.props.data?
+						this.renderCandidateListRender():
+						this.noResult()}
 				</div>				
 			</div>
 		)

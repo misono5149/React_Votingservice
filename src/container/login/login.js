@@ -2,14 +2,14 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 import './login.css';
-
+import { auth } from '../../lib/auth.js'
 class Login extends Component{
    constructor(props){
         super(props);
         this.state = {
             id : '',
             pw : '',
-            is_auth : this.props.is_auth
+            is_auth : ''
         }
         /* 입력 state관리  */
         this.changeID = this.changeID.bind(this)
@@ -26,6 +26,15 @@ class Login extends Component{
     setCookie = (value) => {
        document.cookie = 'token' + '=' + value + ';path=/';
       };
+
+    sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+          if ((new Date().getTime() - start) > milliseconds){
+            break;
+          }
+        }
+      }
      
     clickLogin = e => { //클릭시
         if(this.state.id === '' || this.state.pw === ''){
@@ -39,19 +48,16 @@ class Login extends Component{
             password : this.state.pw
         }]
         const url = 'http://52.79.177.231:8080/login'
-        console.log(user); //확인 완료
         axios.post(url, {user})
         .then((res) => {
             if(res.data.is_success === 200){  // 인증 완료
-                this.setState({is_auth : true})          // 인증 true
-                console.log(this.props.auth)
                 this.setCookie(res.data.auth_token) // 쿠키저장
-                this.handleHistory(this.state.is_auth)        //선거목록 이동
+                this.sleep(1000)
+                alert('로그인 되었습니다')
+                this.handleHistory()        //선거목록 이동
+                
             }
             else{
-                this.setState({
-                    is_auth : false
-                })
                 alert('아이디나 비밀번호가 일치하지 않습니다')
             }
         })
@@ -59,11 +65,10 @@ class Login extends Component{
         }
         
     }   
-    handleHistory = (auth) => {
+    handleHistory = () => {
         let url = '/voter/elections'
         this.props.history.push({
             pathname : url,
-            is_auth : auth
         })
     }
     render(){
