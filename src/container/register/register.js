@@ -1,4 +1,4 @@
-import axios from 'axios';
+/*import axios from 'axios';
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './register.css';
@@ -13,7 +13,7 @@ class Register extends Component{
             mobile:'',
             check_pw:''
         }
-        /* 입력 state관리  */
+        /* 입력 state관리  
         this.changeID = this.changeID.bind(this)
         this.changeEmail = this.changeEmail.bind(this)
         this.changePW = this.changePW.bind(this)
@@ -27,7 +27,7 @@ class Register extends Component{
     changeConfirmPW(e){this.setState({check_pw : e.target.value})}
     changeMobile(e){this.setState({mobile : e.target.value})}
 
-    /* Call api with asynchronos  */
+    /* Call api with asynchronos  
     _getUserAuth = async () => {await this.clickSignup}
     
     clickSignup = e => { //클릭시
@@ -143,3 +143,4 @@ class Register extends Component{
     }
 }
 export default Register;
+*/
