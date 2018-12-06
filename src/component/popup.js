@@ -9,10 +9,10 @@ class Popup extends Component {
     voting = (candidateid, electionid) => {
  
         const vote = { //params
-           params:{ 
+         
                 'candidate_id' : candidateid,
-                'election_id' : electionid
-           }
+                'election_id' : electionid,
+           
         }
         const url = 'http://52.79.177.231:8080/voter/elections/voting'
         const config = {
@@ -42,7 +42,7 @@ class Popup extends Component {
                                 onClick = {() => this.voting(this.props.candidate_id, this.props.election_id)} >투표하기</button>
                         <button className = 'ui big positive button m-b-20'
                                 role = 'button'
-                                onClick = {this.props.closePopup}>다시 한번 생각해보기</button>
+                                onClick = {this.props.closePopup}>다시 한번 생각해보기/돌아가기</button>
                     </div>
                 </div>
             </div>
