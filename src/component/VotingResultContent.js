@@ -20,7 +20,7 @@ class VotingResultContent extends Component {
 					{prize}
 				</div>
 			)
-	}
+	} 
 
 	renderPieChart(){
 		let list = Sortnum(this.props.data.candidate);

@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 import './login.css';
-import { auth } from '../../lib/auth.js'
+import badreq from '../../servermsg/badreq.js'
+import Badreq from '../../servermsg/badreq.js';
 class Login extends Component{
    constructor(props){
         super(props);
@@ -57,6 +58,9 @@ class Login extends Component{
                 alert('로그인 되었습니다')
                 this.handleHistory()        //선거목록 이동
                 
+            }
+            else if(res.status === 400){
+                return <Badreq/>
             }
             else{
                 alert('아이디나 비밀번호가 일치하지 않습니다')
