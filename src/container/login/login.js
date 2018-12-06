@@ -50,6 +50,7 @@ class Login extends Component{
         const url = 'http://52.79.177.231:8080/login'
         axios.post(url, {user})
         .then((res) => {
+            console.log(res)
             if(res.data.is_success === 200){  // 인증 완료
                 this.setCookie(res.data.auth_token) // 쿠키저장
                 this.sleep(1000)

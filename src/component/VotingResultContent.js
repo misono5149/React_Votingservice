@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './VotingResultContent.css'
-import { ConvertTimestamp } from '../lib/time.js';
 import {Sortnum} from '../lib/sort.js'
 import { Segment} from 'semantic-ui-react';
 import {Pie} from 'react-chartjs-2'

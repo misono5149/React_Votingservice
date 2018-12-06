@@ -29,7 +29,7 @@ class VotingList extends Component{
                 'Authorization' : 'Bearer '+getCookie()
             }
           };
-        axios.get('http://52.79.177.231:8080/voter/elections?page='+tempPage ,config)//get 형식
+        axios.get('http://52.79.177.231:8080/voter/elections?page='+tempPage, config)//get 형식
         .then((data) => {
             this.setState({
                 current_page : data.data.current_page,
