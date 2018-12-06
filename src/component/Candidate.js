@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Candidate.css';
 import Popup from './popup.js'
-import { Segment } from 'semantic-ui-react';
+import img from '../assets/img/matthew.png'
 
 class Candidate extends Component{
         constructor(props){
@@ -26,7 +26,7 @@ class Candidate extends Component{
         <div className='ui celled centered grid'>
             <div className='row'>
                 <div className='eight wide column'>
-                    후보자 이미지
+                    <img src = {img}></img>
                 </div>
             <div className='eight wide column'>
                 <div className='ui celled grid'>

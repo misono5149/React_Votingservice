@@ -7,15 +7,15 @@ class Popup extends Component {
         super(props);
     }
     voting = (candidateid, electionid) => {
-        if(this.props.auth){
+ 
         const vote = { //params
            params:{ 
-                election_id : electionid,
-                candidate_id : candidateid
+                'candidate_id' : candidateid,
+                'election_id' : electionid
            }
         }
         const url = 'http://52.79.177.231:8080/voter/elections/voting'
-        var config = {
+        const config = {
             headers: {
                 'Content-Type' : 'application/json',
                 'Authorization' : 'Bearer '+getCookie()
@@ -24,18 +24,12 @@ class Popup extends Component {
         axios.post(url, vote, config)
         .then((res) => {
             if(res.status === 200){
+                console.log(res)
                 alert('투표하였습니다')
             }
         })
         .catch((err) => (alert('알 수없는 오류가 발생하였습니다. 투표가 정상적으로 이루어 지지 않았습니다 에러 :' + err)))
         }
-        else{
-            alert('다시 로그인 해주시기 바랍니다.')
-            this.props.history.push({
-                pathname: '/login'
-            })
-        }
-    }
 
     render(){
         return(
