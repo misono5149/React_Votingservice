@@ -19,7 +19,7 @@ class MainNav extends Component{
     displayTime = setInterval(() => {
       this.ticktok()
       console.log(this.state.time)
-    }, 1000)
+    }, 60000)
   
   ticktok = () => {
     const url = 'http://52.79.177.231:8080/servertime'
