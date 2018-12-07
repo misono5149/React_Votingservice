@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CandidateList from '../container/candidatelist/candidatelist.js'
 import './descriptVote.css';
+import img from '../assets/img/poster.PNG'
 class DescriptVote extends Component{
     constructor(props){
         super(props);
@@ -27,7 +28,7 @@ class DescriptVote extends Component{
                     <div className = 'ui internally grid'>
                         <div className = 'row'>
                             <div className = 'four wide column m-t-50'>
-                                사진
+                                <img src = {img}></img>
                             </div>
                             <div className = 'twelve wide column text-left'>
                             <div className = 'voting-title  m-b-20'>

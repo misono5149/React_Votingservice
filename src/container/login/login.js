@@ -44,12 +44,12 @@ class Login extends Component{
         }
         else{
         e.preventDefault();
-        const user = [{ //params
-            student_id : this.state.id,
+        const user = { //params
+            username : this.state.id,
             password : this.state.pw
-        }]
+        }
         const url = 'http://52.79.177.231:8080/login'
-        axios.post(url, {user})
+        axios.post(url, user)
         .then((res) => {
             console.log(res)
             if(res.data.is_success === 200){  // 인증 완료
