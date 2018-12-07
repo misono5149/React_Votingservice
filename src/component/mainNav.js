@@ -16,6 +16,10 @@ class MainNav extends Component{
       auth();
       alert('로그아웃 되었습니다')
     }
+
+    componentDidMount(){
+      this.ticktok()
+    }
     displayTime = setInterval(() => {
       this.ticktok()
       console.log(this.state.time)
