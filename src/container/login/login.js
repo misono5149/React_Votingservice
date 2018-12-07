@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 import './login.css';
-import badreq from '../../servermsg/badreq.js'
+import badreq from '../../servermsg/badreq.js';
 import Badreq from '../../servermsg/badreq.js';
 class Login extends Component{
    constructor(props){
